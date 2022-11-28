@@ -572,6 +572,9 @@ class TuyaDevice {
         return new Promise((resolve, reject) => {
             this.device.set(command).then((result) => {
                 resolve(result)
+            }).catch(error => {
+                debugError(error.message)
+                this.reconnect()
             })
         })
     }
